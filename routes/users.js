@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { check, validationResult } = require("express-validator");
 
 //Connect User Model
 const User = require("../models/User");
@@ -8,8 +9,19 @@ const User = require("../models/User");
 // @desc    Register a user
 // @access  Public
 
-router.post("/", (req, res) => {
-  res.send("Register a User");
-});
+router.post(
+  "/",
+  [
+    check("name", "Please enter a name").not().isEmpty(),
+    check("email", "Please include a valid email").isEmail(),
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 })
+  ],
+  (req, res) => {
+    res.send(req.body);
+  }
+);
 
 module.exports = router;
