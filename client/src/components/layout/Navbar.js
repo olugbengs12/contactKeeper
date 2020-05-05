@@ -1,19 +1,31 @@
 import React from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ icon, title }) => {
+const Navbar = ({ title, icon }) => {
   return (
     <div className="navbar bg-primary">
-      <i className={icon} /> {title}
+      <h1>
+        <i className={icon} /> {title}
+      </h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
     </div>
   );
-  Navbar.propTypes = {
-    title: propTypes.string.isRequired,
-    icon: propTypes.string,
-  };
-  Navbar.defaultProps = {
-    title: "Contact Keeper",
-    icon: "fas fa-id-card-alt",
-  };
 };
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+};
+Navbar.defaultProps = {
+  title: "Contact Manager",
+  icon: "fas fa-id-card-alt",
+};
+
 export default Navbar;
