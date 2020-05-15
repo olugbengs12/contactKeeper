@@ -12,86 +12,40 @@ import {
   CLEAR_ERRORS,
 } from "../types";
 
-const ContactState = (props) => {
+const AuthState = (props) => {
   const initialState = {
-    contacts: [
-      {
-        id: 1,
-        name: "John Doe",
-        email: "JohnDoe@gmail.com",
-        phone: "111-111-111",
-        type: "personal",
-      },
-      {
-        id: 2,
-        name: "John Sawyer",
-        email: "JohnSawyer@gmail.com",
-        phone: "222-222-222",
-        type: "personal",
-      },
-      {
-        id: 3,
-        name: "John Stones",
-        email: "JohnStones@gmail.com",
-        phone: "333-333-333",
-        type: "professional",
-      },
-    ],
-    current: null,
-    filtered: null,
+    token: localStorage.getItem("token"),
+    isAuthenticated: null,
+    user: null,
+    loading: true,
+    error: null,
   };
 
-  const [state, dispatch] = useReducer(contactReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
-  //Add Contact
-  const addContact = (contact) => {
-    contact.id = uuid.v4();
-    dispatch({ type: ADD_CONTACT, payload: contact });
-  };
-  //Delete Contact
-  const deleteContact = (id) => {
-    dispatch({ type: DELETE_CONTACT, payload: id });
-  };
-  //Set Current Contact
-  const setCurrent = (contact) => {
-    dispatch({ type: SET_CURRENT, payload: contact });
-  };
-  //Clear Current Contact
-  const clearCurrent = () => {
-    dispatch({ type: CLEAR_CURRENT });
-  };
-  //Update Contacts
-  const updateContact = (contact) => {
-    dispatch({ type: UPDATE_CONTACT, payload: contact });
-  };
+  //Load User
 
-  //Filter Contacts
-  const filterContact = (text) => {
-    dispatch({ type: FILTER_CONTACT, payload: text });
-  };
+  //Register User
 
-  //Clear Filter
-  const clearFilter = () => {
-    dispatch({ type: CLEAR_FILTER });
-  };
+  //Login User
+
+  //Logout
+
+  //Clear Errors
+
   return (
-    <ContactContext.Provider
+    <AuthContext.Provider
       value={{
-        contacts: state.contacts,
-        current: state.current,
-        filtered: state.filtered,
-        addContact,
-        deleteContact,
-        setCurrent,
-        clearCurrent,
-        updateContact,
-        filterContact,
-        clearFilter,
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+        loading: state.loading,
+        user: state.user,
+        error: state.error,
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export default ContactState;
+export default AuthState;
