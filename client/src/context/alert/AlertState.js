@@ -22,6 +22,7 @@ const AlertState = (props) => {
   return (
     <AlertContext.Provider
       value={{
+        alerts: state.alerts,
         setAlert,
       }}
     >
@@ -29,4 +30,5 @@ const AlertState = (props) => {
     </AlertContext.Provider>
   );
 };
+
 export default AlertState;
