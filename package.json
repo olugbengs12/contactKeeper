@@ -4,8 +4,10 @@
   "description": "A react based app that allows users to create accounts and store personal contacts",
   "main": "server.js",
   "engines": {
-    "npm": "6.x" },
-   "scripts": {
+    "node": "13.x",
+    "npm": "6.x"
+  },
+  "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
